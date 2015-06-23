@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>iframeTabs</title>
+<link rel="stylesheet" href="external/jquery-ui/jquery-ui.css">
+<link rel="stylesheet" href="demo.css">
+
+<script src="external/jquery/jquery.js"></script>
+<script src="external/jquery-ui/jquery-ui.js"></script>
+<script src="../src/jquery.iframeTabs.js"></script>
+
+<style type="text/css">
+* {
+	padding: 0px;
+	margin: 0px;
+}
+#left-side {
+	float: left;
+	width: 120px;
+}
+ul > li {
+	list-style: none;
+    margin-top: 10px;
+	margin-left: 10px;
+}
+#content {
+	float: left;
+	width: 800px;
+}
+</style>
+</head>
+<body>
+<div id="main">
+	<div id="left-side">
+	<ul id="menu">
+		<li>
+			<a id="menu1" href="#">Tab1</a>
+		</li>
+		<li>
+			<a id="menu2" href="#">Tab2</a>
+		</li>
+		<li>
+			<a id="menu3" href="#">Tab3</a>
+		</li>
+	</ul>
+	</div>
+	<div id="content">
+		<div id="tabs">
+			<ul>
+				<li><a href="#home">Home</a></li>
+			</ul>
+			<div id="home">
+				This is home page.
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var tabs = $("#tabs").iframeTabs({'wrapperClass':'tab-wrapper','height': 500});
+	$("#menu").on('click', 'a', function(event) {
+		event.preventDefault();
+		var title = $(this).text();
+		var id = $(this).attr('id');
+		tabs.addTab('tab-'+id.substr(4), title, 'tab'+id.substr(4)+'.html');
+	});
+});
+</script>
+</body>
+</html>
